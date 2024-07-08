@@ -1,0 +1,54 @@
+<!-- views/chat.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Chat</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+
+    // Join shop chat room
+    socket.emit('joinShop', '<%= shop._id %>');
+
+    // Receive new chat message
+    socket.on('chat message', function(data) {
+      var messageElement = document.createElement('li');
+      messageElement.innerHTML = `<strong>${data.sender}</strong>: ${data.content}`;
+      document.getElementById('messages').appendChild(messageElement);
+    });
+
+    // Handle errors
+    socket.on('chat error', function(errorMessage) {
+      console.error('Chat error:', errorMessage);
+      // Handle/display error message in your UI
+    });
+  </script>
+</head>
+<body>
+  <h1>Shop Chat</h1>
+  <div id="messages">
+    <% shop.messages.forEach(message => { %>
+      <li><strong><%= message.sender.username %></strong>: <%= message.content %></li>
+    <% }); %>
+  </div>
+  <form id="messageForm" action="/shops/<%= shop._id %>/chat" method="POST">
+    <input type="text" name="message" placeholder="Type your message...">
+    <button type="submit">Send</button>
+  </form>
+  
+  <script>
+    // Example: Send message form submission
+    document.getElementById('messageForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var messageInput = this.message.value.trim();
+      if (messageInput !== '') {
+        socket.emit('chat message', { shopId: '<%= shop._id %>', message: messageInput });
+        this.message.value = ''; // Clear input field after sending
+      }
+    });
+  </script>
+</body>
+</html>

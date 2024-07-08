@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Invite to Shop</title>
+</head>
+<body>
+  <h1>Invite to <%= shop.name %></h1>
+  <form action="/shops/<%= shop._id %>/invite" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required>
+    <br>
+    <button type="submit">Send Invite</button>
+  </form>
+  <a href="/shops/<%= shop._id %>">Back to Shop</a>
+</body>
+</html>

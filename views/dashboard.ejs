@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1>Dashboard</h1>
+  <a href="/shops/create">Create Shop</a>
+  <h2>Your Shops</h2>
+  <ul>
+    <% for(let shop of shops) { %>
+      <li><a href="/shops/<%= shop._id %>"><%= shop.name %></a></li>
+    <% } %>
+  </ul>
+
+  <h1>Pending Invites</h1>
+  <ul>
+    <% for(let invite of pendingInvites) { %>
+      <li>
+        <%= invite.name %>
+        <form action="/shops/<%= invite._id %>/join" method="GET">
+          <button type="submit">Join</button>
+        </form>
+      </li>
+    <% } %>
+  </ul>
+</body>
+</html>

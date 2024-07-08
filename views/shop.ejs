@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shop</title>
+</head>
+<body>
+  <h1><%= shop.name %></h1>
+  <h2>Products</h2>
+  <ul>
+    <% for(let product of shop.products) { %>
+      <li><%= product.name %> - $<%= product.price %></li>
+    <% } %>
+  </ul>
+  <h2>Add Product</h2>
+  <form action="/products/add" method="POST">
+    <input type="hidden" name="shopId" value="<%= shop._id %>">
+    <label for="name">Product Name:</label>
+    <input type="text" name="name" id="name" required>
+    <br>
+    <label for="price">Price:</label>
+    <input type="number" name="price" id="price" required>
+    <br>
+    <button type="submit">Add Product</button>
+  </form>
+  <a href="/shops/<%= shop._id %>/chat">Go to Chat</a>
+  <a href="/shops/<%= shop._id %>/invite">Invite Vendors</a>
+</body>
+</html>
