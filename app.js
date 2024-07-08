@@ -110,6 +110,7 @@ const path = require('path');
 const auth = require('./middleware/auth'); // Your updated auth middleware
 const User = require('./models/User'); // Import User model
 const Shop = require('./models/Shop'); // Import Shop model
+const router = express.Router();
 
 const app = express();
 const server = http.createServer(app);
@@ -139,6 +140,10 @@ app.set('view engine', 'ejs');
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+const cartRoutes = require('./routes/cart');
+app.use(express.urlencoded({ extended: true }));
+app.use('/cart', cartRoutes);
+
 // Middleware for all routes requiring authentication
 app.use('/dashboard', auth);
 
@@ -158,6 +163,17 @@ app.get('/dashboard', auth, async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+router.post('/logout', (req, res) => {
+    // Destroy session here (example below)
+    req.session.destroy(err => {
+      if (err) {
+        return res.status(500).send('Error logging out');
+      }
+      // Redirect to login page after logout
+      res.redirect('/users/login');
+    });
+  });
 
 // Socket.io for chat functionality
 // io.on('connection', socket => {

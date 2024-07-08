@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop Chat</title>
+  <link rel="stylesheet" href="/css/styles.css">
   <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io();
@@ -28,7 +29,8 @@
   </script>
 </head>
 <body>
-  <h1>Shop Chat</h1>
+  <div class="container">
+    <h1>Shop Chat</h1>
   <div id="messages">
     <% shop.messages.forEach(message => { %>
       <li><strong><%= message.sender.username %></strong>: <%= message.content %></li>
@@ -38,6 +40,8 @@
     <input type="text" name="message" placeholder="Type your message...">
     <button type="submit">Send</button>
   </form>
+  <a href="/shops/<%= shop._id %>" class="btn">Back to Shop</a>
+  </div>
   
   <script>
     // Example: Send message form submission

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="cart-container">
+    <h1>Shopping Cart</h1>
+    <ul>
+      <% for(let product of cart) { %>
+        <li>
+          <%= product.name %> - $<%= product.price %>
+          <form action="/cart/remove" method="POST" style="display:inline;">
+            <input type="hidden" name="productId" value="<%= product._id %>">
+            <button type="submit" class="btn">Remove</button>
+          </form>
+        </li>
+      <% } %>
+    </ul>
+    <h2>Total Cost: $<%= totalCost %></h2>
+    <form action="/payment" method="GET">
+      <button type="submit" class="btn">Proceed to Payment</button>
+    </form>
+    <a href="/dashboard" class="btn">Back to Dashboard</a>
+  </div>
+</body>
+</html>

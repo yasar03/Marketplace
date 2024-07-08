@@ -1,4 +1,389 @@
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
-  }
-  
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.welcome-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+a.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin: 5px 0;
+}
+
+a.btn:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Chat Page Styles */
+#messages {
+    list-style: none;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#messages li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+}
+
+#messages li:last-child {
+    border-bottom: none;
+}
+
+#messages li strong {
+    display: block;
+    color: #007bff;
+}
+
+form {
+    display: flex;
+}
+
+input[name="message"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Additional Page Styles */
+
+/* Registration and Login Page Styles */
+.form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.form-container button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Dashboard Page Styles */
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px auto;
+}
+
+.dashboard-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.dashboard-container ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+.dashboard-container ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-container ul li:last-child {
+    border-bottom: none;
+}
+
+.dashboard-container ul li a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.dashboard-container ul li a:hover {
+    background-color: #0056b3;
+}
+
+.dashboard-container ul li form {
+    margin: 0;
+}
+
+.dashboard-container ul li button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dashboard-container ul li button:hover {
+    background-color: #0056b3;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+/* Create Shop Page Styles */
+.create-shop-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.create-shop-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.create-shop-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-shop-container input,
+.create-shop-container select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.create-shop-container button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-shop-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Shop Page Styles */
+.shop-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.shop-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.shop-container h2 {
+    margin-bottom: 10px;
+}
+
+.shop-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.shop-container ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.shop-container ul li:last-child {
+    border-bottom: none;
+}
+
+.shop-container form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.shop-container form label {
+    margin-bottom: 5px;
+}
+
+.shop-container form input[type="text"],
+.shop-container form input[type="number"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.shop-container form button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.shop-container form button:hover {
+    background-color: #0056b3;
+}
+
+.shop-container .actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.shop-container .actions a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.shop-container .actions a:hover {
+    background-color: #0056b3;
+}
+
+/* Invite Page Styles */
+.invite-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.invite-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.invite-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.invite-container input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.invite-container button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.invite-container button:hover {
+    background-color: #0056b3;
+}

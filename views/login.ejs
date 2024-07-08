@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>Login</title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+    <div class="form-container">
   <h1>Login</h1>
   <form action="/users/login" method="POST">
     <label for="username">Username:</label>
@@ -14,5 +16,7 @@
     <br>
     <button type="submit">Login</button>
   </form>
+  <a href="/users/register" class="btn">Register</a>
+</div>
 </body>
 </html>

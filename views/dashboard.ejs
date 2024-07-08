@@ -1,28 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .top-right-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <h1>Dashboard</h1>
-  <a href="/shops/create">Create Shop</a>
-  <h2>Your Shops</h2>
-  <ul>
-    <% for(let shop of shops) { %>
-      <li><a href="/shops/<%= shop._id %>"><%= shop.name %></a></li>
-    <% } %>
-  </ul>
+  <div class="top-right-container">
+    <a href="/cart" class="btn">Go to Cart</a>
+  </div>
+  <div class="dashboard-container">
+    <h1>Dashboard</h1>
+    <a href="/shops/create" class="btn">Create Shop</a>
 
-  <h1>Pending Invites</h1>
-  <ul>
-    <% for(let invite of pendingInvites) { %>
-      <li>
-        <%= invite.name %>
-        <form action="/shops/<%= invite._id %>/join" method="GET">
-          <button type="submit">Join</button>
-        </form>
-      </li>
-    <% } %>
-  </ul>
+    <div class="section">
+      <h2>Your Shops</h2>
+      <ul class="shop-list">
+        <% for(let shop of shops) { %>
+          <li><a href="/shops/<%= shop._id %>" class="shop-link"><%= shop.name %></a></li>
+        <% } %>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Pending Invites</h2>
+      <ul class="invite-list">
+        <% for(let invite of pendingInvites) { %>
+          <li>
+            <%= invite.name %>
+            <form action="/shops/<%= invite._id %>/join" method="GET" class="join-form">
+              <button type="submit" class="btn">Join</button>
+            </form>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+  <a href="/users/login" class="btn">Logout</a>
 </body>
 </html>

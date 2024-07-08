@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>Invite to Shop</title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+    <div class="invite-container">
   <h1>Invite to <%= shop.name %></h1>
   <form action="/shops/<%= shop._id %>/invite" method="POST">
     <label for="username">Username:</label>
@@ -11,6 +13,7 @@
     <br>
     <button type="submit">Send Invite</button>
   </form>
-  <a href="/shops/<%= shop._id %>">Back to Shop</a>
+  <a href="/shops/<%= shop._id %>" class="btn">Back to Shop</a>
+</div>
 </body>
 </html>
