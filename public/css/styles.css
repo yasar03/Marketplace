@@ -156,6 +156,7 @@ button:hover {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin: 20px auto;
+    position: relative;
 }
 
 .dashboard-container h1 {
@@ -217,6 +218,12 @@ button:hover {
 
 .section {
     margin-bottom: 40px;
+}
+
+.dashboard-container .actions {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 /* Create Shop Page Styles */
@@ -289,6 +296,9 @@ button:hover {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .shop-container ul li:last-child {
@@ -387,3 +397,110 @@ button:hover {
 .invite-container button:hover {
     background-color: #0056b3;
 }
+
+/* Cart Page Styles */
+.cart-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-container h1 {
+    text-align: center;
+    color: #333;
+}
+
+.cart-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-container ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-container ul li:last-child {
+    border-bottom: none;
+}
+
+.cart-container .btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.cart-container .btn:hover {
+    background-color: #0056b3;
+}
+
+.cart-container form {
+    display: inline;
+}
+
+.cart-container form button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.cart-container form button:hover {
+    background-color: #c82333;
+}
+
+.cart-container .total-cost {
+    text-align: right;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.cart-container a.btn {
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cart-container .proceed-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #28a745;
+}
+
+.cart-container .proceed-btn:hover {
+    background-color: #218838;
+}
+
+.payment-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .payment-container button {
+    margin-bottom: 10px;
+  }
+  
+  .payment-container form {
+    margin-top: 20px;
+  }

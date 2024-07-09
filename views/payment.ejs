@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- <script src="https://www.paypal.com/sdk/js?client-id=AaHAa23EtkKnl0HhphmLNiMl4mHYJJWMMyb0PHVZLSwqQk2jXydNAARx5hV0GF92fP4ZOiOIwfR4wJA4"></script> -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+
+#stripe-checkout-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #28a745;
+}
+
+#stripe-checkout-button:hover {
+    background-color: #218838;
+}
+  </style>
+
+</head>
+<body>
+  <div class="payment-container">
+    <h1>Proceed to Payment</h1>
+    <button id="stripe-checkout-button" class="btn">Stripe Checkout</button>
+    <!-- <button id="paypal-checkout-button" type="submit" class="btn">PayPal Checkout</button> -->
+    <!-- <div id="paypal-button-container"></div> -->
+    <div class="top-right-container">
+        <a href="/cart" class="btn">Back to Cart</a>
+      </div>
+    
+  </div>
+  <script>
+    
+    // const totalPrice = document.getElementById('totalCost').value;
+    const stripe = Stripe('pk_test_51PaZF9RxPgqbz4tE2ipZRF5wdrUp8z0VKZVhlMN7MaYuwlkbYoaAORMgs2WM0MMJnBAfeNlhBDdn3m98fAV4S0eh000VcIgqYP'); // Replace with your actual Stripe publishable key
+
+    document.getElementById('stripe-checkout-button').addEventListener('click', async () => {
+      const response = await fetch('/payment/create-checkout-session', {
+        method: 'POST',
+      });
+      const session = await response.json();
+      stripe.redirectToCheckout({ sessionId: session.id });
+    });
+
+    // paypal.Buttons({
+    //   createOrder: function(data, actions) {
+    //     return fetch('/payment/create-paypal-order', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //       body: JSON.stringify({
+    //         // price: document.getElementById('totalCost').value 
+    //       })
+    //     }).then(function(response) {
+    //       return response.json();
+    //     }).then(function(order) {
+    //       return order.orderId;
+    //     });
+    //   },
+    //   onApprove: function(data, actions) {
+    //     return actions.order.capture().then(function(details) {
+    //       alert('Transaction completed by ' + details.payer.name.given_name);
+    //       // Call your backend to save the transaction if needed
+    //     });
+    //   }
+    // }).render('#paypal-button-container');
+
+    
+  </script>
+</body>
+</html>

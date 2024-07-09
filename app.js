@@ -111,6 +111,9 @@ const auth = require('./middleware/auth'); // Your updated auth middleware
 const User = require('./models/User'); // Import User model
 const Shop = require('./models/Shop'); // Import Shop model
 const router = express.Router();
+require('dotenv').config();
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 
 const app = express();
 const server = http.createServer(app);
@@ -143,6 +146,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 const cartRoutes = require('./routes/cart');
 app.use(express.urlencoded({ extended: true }));
 app.use('/cart', cartRoutes);
+
+const paymentRouter = require('./routes/payment');
+app.use('/payment', paymentRouter);
+
+
+app.get('/payment/success', (req, res) => {
+  res.send('Payment successful!'); // Replace with your actual success page rendering logic
+});
+
 
 // Middleware for all routes requiring authentication
 app.use('/dashboard', auth);
