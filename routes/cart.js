@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product'); // Ensure you have the Product model imported
-const YOUR_DOMAIN = 'https://marketplace-n7yp.onrender.com/payment';
+const YOUR_DOMAIN = 'https://marketplace-3zxf.onrender.com/payment';
 
 let cart = []; // Temporary cart array
 

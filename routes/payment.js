@@ -55,8 +55,8 @@ router.post('/create-checkout-session', async (req, res) => {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: 'https://marketplace-n7yp.onrender.com/payment/success',
-      cancel_url: 'https://marketplace-n7yp.onrender.com/payment/cancel',
+      success_url: 'https://marketplace-3zxf.onrender.com/payment/success',
+      cancel_url: 'https://marketplace-3zxf.onrender.com/payment/cancel',
     });
 
     res.json({ id: session.id });

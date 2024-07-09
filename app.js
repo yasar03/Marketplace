@@ -1,105 +1,6 @@
-// const express = require('express');
-// const mongoose = require('mongoose');
-// const bodyParser = require('body-parser');
-// const session = require('express-session');
-// const MongoStore = require('connect-mongo');
-// const socketIO = require('socket.io');
-// const http = require('http');
-// const path = require('path');
-// const auth = require('./middleware/auth');
-
-// const app = express();
-// const server = http.createServer(app);
-// const io = socketIO(server);
-
-// // Connect to MongoDB
-// mongoose.connect('mongodb://localhost:27017/marketplace', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// //   useFindAndModify: false,
-// //   useCreateIndex: true
-// })
-// .then(() => console.log('MongoDB Connected'))
-// .catch(err => console.error('MongoDB connection error:', err));
-
-// // Body parser middleware
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
-
-// // Session middleware
-// app.use(session({
-//   secret: 'your-secret-key',
-//   resave: false,
-//   saveUninitialized: false,
-//   store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/marketplace' })
-// }));
-
-// // View engine setup
-// app.set('view engine', 'ejs');
-
-// // Static folder
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// // Routes
-// app.use('/', require('./routes/index'));
-// app.use('/users', require('./routes/users'));
-// app.use('/shops', require('./routes/shops'));
-// app.use('/products', require('./routes/products'));
-
-// // Dashboard route with authentication middleware
-// app.get('/dashboard', auth, async (req, res) => {
-//   try {
-//     const User = require('./models/User');
-//     const user = await User.findById(req.session.userId).populate('shops').populate('pendingInvites');
-//     res.render('dashboard', { shops: user.shops, pendingInvites: user.pendingInvites });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send('Internal Server Error');
-//   }
-// });
-// // Socket.io for chat functionality
-// io.on('connection', socket => {
-//     console.log('New client connected');
-    
-//     socket.on('login', username => {
-//         socket.username = username;
-//         // console.log(socket.username);
-//     });
-
-//     socket.on('joinShop', shopId => {
-//       socket.join(`shop_${shopId}`);
-//     });
-  
-//     socket.on('chat message', async ({ shopId, message }) => {
-//       try {
-//         // Save message to database or perform any necessary operations
-        
-//         // Emit the message to all members of the shop using Socket.IO
-//         io.to(`shop_${shopId}`).emit('chat message', {
-//           sender: socket.username,  // Assuming socket.username is set somewhere
-//           content: message,
-//           createdAt: new Date()
-//         });
-//       } catch (err) {
-//         console.error('Error sending message:', err);
-//         socket.emit('chat error', 'Error sending message'); // Emit error to sender
-//       }
-//     });
-  
-//     socket.on('disconnect', () => {
-//       console.log('Client disconnected');
-//     });
-//   });
-  
-
-// // Start server
-// const PORT = process.env.PORT || 3000;
-// server.listen(PORT, () => {
-//   console.log(`Server started on http://localhost:${PORT}`);
-// });
-
 
 const express = require('express');
+const connectDB = require("./config/db");
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -107,6 +8,7 @@ const MongoStore = require('connect-mongo');
 const socketIO = require('socket.io');
 const http = require('http');
 const path = require('path');
+const authRoutes = require('./routes/auth');
 const auth = require('./middleware/auth'); // Your updated auth middleware
 const User = require('./models/User'); // Import User model
 const Shop = require('./models/Shop'); // Import Shop model
@@ -119,18 +21,26 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
+connectDB();
+
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/marketplace', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect('mongodb://localhost:27017/marketplace', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 // Session middleware
 app.use(session({
-  secret: 'your-secret-key',
+  secret: 'your_secret_key',
   resave: false,
-  saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/marketplace' })
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    collectionName: 'sessions'
+  }),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 // 1 day
+  }
 }));
 
 // Body parser middleware
@@ -139,6 +49,13 @@ app.use(bodyParser.json());
 
 // View engine setup
 app.set('view engine', 'ejs');
+
+app.use('/register', authRoutes);
+
+// Define the root route to render the registration page
+app.get('/', (req, res) => {
+  res.render('register');
+});
 
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')));
